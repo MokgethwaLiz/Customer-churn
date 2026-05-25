@@ -7,10 +7,16 @@ WORKDIR /app
 #3. copy only dependency file first (for Docker caching)
 COPY requirements.txt .
 
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    gcc \
+    g++ \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
 #4. install Python dependencies
 RUN pip install --upgrade pip \
-    && pip install -r requirements.txt \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && pip install -r requirements.txt
 
 #5. copy the entire project into the image 
 COPY . .
