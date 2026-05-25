@@ -5,11 +5,11 @@ FROM python:3.10-slim
 WORKDIR /app
 
 #3. copy only dependency file first (for Docker caching)
-COPY requirements.txt
+COPY requirements.txt .
 
 #4. install Python dependencies
 RUN pip install --upgrade pip \
-    && pip install -r requirements.txt \
+    && pip install -r requirements.txt
 
 #5. copy the entire project into the image 
 COPY . .
