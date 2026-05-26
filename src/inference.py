@@ -52,7 +52,6 @@ def preprocess_new_data(data):
             .astype(int)
         )
     
-    # CLEAN STRING COLUMNS HERE
     for col in df.select_dtypes(include='object').columns:
 
         df[col] = (
